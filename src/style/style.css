@@ -1,0 +1,105 @@
+.swagger-ui {
+    font-family: "Consolas";
+}
+
+.swagger-ui .info a {
+    font-family: "Consolas";
+}
+
+.swagger-ui select {
+    font-family: "Consolas";
+}
+
+.swagger-ui .opblock .opblock-summary-method {
+    font-family: "Consolas";
+    font-size: 16px;
+}
+
+.swagger-ui .opblock .opblock-summary-operation-id,
+.swagger-ui .opblock .opblock-summary-path,
+.swagger-ui .opblock .opblock-summary-path__deprecated {
+    font-family: "Consolas";
+}
+
+.swagger-ui .parameter__name,
+.swagger-ui .parameter__type,
+.swagger-ui .parameter__extension,
+.swagger-ui .parameter__in {
+    font-family: "Consolas";
+}
+
+.swagger-ui .parameter__name.required:after {
+    font-size: 14px;
+    top: -3px;
+}
+
+.swagger-ui .model {
+    font-family: "Consolas";
+    font-size: 14px;
+}
+
+.swagger-ui .response-col_description__inner div.markdown, .swagger-ui .response-col_description__inner div.renderedMarkdown {
+    font-family: "Consolas";
+    font-size: 14px;
+}
+
+.swagger-ui .response-col_description__inner div.markdown p,
+.swagger-ui .response-col_description__inner div.renderedMarkdown p {
+    font-family: "Consolas";
+}
+
+.swagger-ui pre,
+.swagger-ui .opblock-body pre {
+    font-family: "Consolas";
+    font-size: 14px;
+}
+
+.swagger-ui textarea {
+    font-family: "Consolas";
+    font-size: 14px;
+}
+
+
+/* tables in markdown */
+.renderedMarkdown table {
+    margin: 5px 0;
+}
+
+.renderedMarkdown table tbody tr th,
+.renderedMarkdown table tbody tr td {
+    border: solid 1px #e5e0c6;
+}
+
+/* tables in description */
+.opblock-description .renderedMarkdown table tbody tr th,
+.opblock-description .renderedMarkdown table tbody tr td {
+    border: solid 1px #090909;
+    padding: 10px 5px;
+}
+
+/* tables in response */
+.response .renderedMarkdown table tbody tr th,
+.response .renderedMarkdown table tbody tr td,
+.response .renderedMarkdown table tbody tr td:first-of-type {
+    border: solid 1px black;
+    padding: 10px 5px;
+}
+
+/* table in model box */
+.model-box .renderedMarkdown table tbody tr th,
+.model-box .renderedMarkdown table tbody tr td {
+    border: solid 1px #090909;
+    padding: 10px 5px;
+}
+
+/* <code> in markdown */
+.renderedMarkdown code {
+    background-color: #f0f0f0;
+    color: #000;
+    padding: 1px 3px;
+}
+
+/* model-box name width */
+.swagger-ui .prop-name {
+    width: 200px;
+}

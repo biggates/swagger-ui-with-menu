@@ -1,0 +1,46 @@
+{
+  "name": "g08-api-doc",
+  "version": "1.0.0",
+  "description": "API documentation of G08 device",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec \"webpack-dev-server --hot --config webpack.dev.js\"",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "keywords": [
+    "doc"
+  ],
+  "author": "biggates",
+  "license": "MIT",
+  "nodemonConfig": {
+    "delay": "5",
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "watch": [
+      "webpack.common.js",
+      "webpack.dev.js"
+    ]
+  },
+  "dependencies": {
+    "clean-webpack-plugin": "^0.1.17",
+    "copy-webpack-plugin": "^4.5.4",
+    "css-loader": "^1.0.0",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.4",
+    "nodemon": "^1.18.4",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "style-loader": "^0.23.1",
+    "swagger-ui": "^3.19.4",
+    "terser-webpack-plugin": "^1.1.0",
+    "webpack": "^4.22.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.4",
+    "webpackbar": "^2.6.3"
+  },
+  "devDependencies": {
+    "eslint": "^5.7.0"
+  }
+}
