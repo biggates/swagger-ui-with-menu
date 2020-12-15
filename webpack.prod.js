@@ -1,70 +1,65 @@
 const path = require('path');
 
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const TerserPlugin = require("terser-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = merge(common, {
-    mode: 'production',
-    devtool: 'source-map',
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'js/[name].[chunkhash].js'
+  mode: 'production',
+  devtool: 'source-map',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'js/[name].[chunkhash].js',
+  },
+  optimization: {
+    minimize: true,
+    minimizer: ['...', new CssMinimizerPlugin()],
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          test: /[/\\]node_modules[/\\]/,
+          priority: -10,
+          name: 'vendor',
+          chunks: 'all',
+        },
+      },
     },
-    optimization: {
-        minimizer: [
-            new TerserPlugin({
-                cache: true,
-                parallel: true,
-                sourceMap: false
-            }),
-            new OptimizeCSSAssetsPlugin({})
-        ],
-        splitChunks: {
-            cacheGroups: {
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    priority: -10,
-                    name: 'vendor',
-                    chunks: 'all'
-                }
-            }
-        }
-    },
-    module: {
-        rules: [{
-            test: /\.css$/i,
-            use: [
-                MiniCssExtractPlugin.loader,
-                "css-loader"
-            ]
-        }]
-    },
-    stats: 'minimal',
-    plugins: [
-        new CleanWebpackPlugin(['dist']),
-        new HtmlWebpackPlugin({
-            template: 'src/assets/index.html'
-        }),
-        new CopyWebpackPlugin([{
-                from: 'external/**/*'
-            },
-            {
-                from: 'src/assets/favicon.ico'
-            }
-        ]),
-        new MiniCssExtractPlugin({
-            chunkFilename: "assets/style.[contenthash].css"
-        })
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
     ],
-    performance: {
-        hints: false
-    }
+  },
+  stats: 'minimal',
+  plugins: [
+    new CleanWebpackPlugin({}),
+    new HtmlWebpackPlugin({
+      template: 'src/assets/index.html',
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'external/**/*',
+        },
+        {
+          from: 'specs/common/*',
+        },
+      ],
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'assets/style.[contenthash].css',
+    }),
+  ],
+  performance: {
+    hints: false,
+  },
 });

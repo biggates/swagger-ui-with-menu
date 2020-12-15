@@ -1,46 +1,80 @@
 {
-  "name": "g08-api-doc",
-  "version": "1.0.0",
-  "description": "API documentation of G08 device",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon --exec \"webpack-dev-server --hot --config webpack.dev.js\"",
-    "build": "webpack --config webpack.prod.js"
-  },
-  "keywords": [
-    "doc"
-  ],
-  "author": "biggates",
-  "license": "MIT",
-  "nodemonConfig": {
-    "delay": "5",
-    "env": {
-      "NODE_ENV": "development"
+    "name": "g08-api-doc",
+    "version": "1.1.0",
+    "description": "API documentation of G08 device",
+    "license": "MIT",
+    "author": {
+        "name": "biggates"
     },
-    "watch": [
-      "webpack.common.js",
-      "webpack.dev.js"
-    ]
-  },
-  "dependencies": {
-    "clean-webpack-plugin": "^0.1.17",
-    "copy-webpack-plugin": "^4.5.4",
-    "css-loader": "^1.0.0",
-    "file-loader": "^2.0.0",
-    "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "^0.4.4",
-    "nodemon": "^1.18.4",
-    "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "style-loader": "^0.23.1",
-    "swagger-ui": "^3.19.4",
-    "terser-webpack-plugin": "^1.1.0",
-    "webpack": "^4.22.0",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10",
-    "webpack-merge": "^4.1.4",
-    "webpackbar": "^2.6.3"
-  },
-  "devDependencies": {
-    "eslint": "^5.7.0"
-  }
+    "keywords": [
+        "doc"
+    ],
+    "main": "index.js",
+    "scripts": {
+        "build": "webpack --config webpack.prod.js",
+        "format": "nice-move lint",
+        "serve": "nodemon --exec \"webpack-cli serve --config webpack.dev.js\"",
+        "start": "nodemon --exec \"webpack-cli serve --config webpack.dev.js\""
+    },
+    "dependencies": {
+        "swagger-ui": "^3.37.0"
+    },
+    "devDependencies": {
+        "@nice-move/cli": "^0.5.7",
+        "@nice-move/eslint-config-base": "^0.4.0",
+        "@nice-move/prettier-config": "^0.3.5",
+        "@nice-move/stylelint-config": "^0.4.2",
+        "clean-webpack-plugin": "^3.0.0",
+        "copy-webpack-plugin": "^7.0.0",
+        "css-loader": "^5.0.1",
+        "css-minimizer-webpack-plugin": "^1.1.5",
+        "eslint": "^7.14.0",
+        "eslint-plugin-html": "^6.1.1",
+        "file-loader": "^6.2.0",
+        "html-webpack-plugin": "^4.5.0",
+        "husky": "^4.3.6",
+        "lint-staged": "^10.5.1",
+        "mini-css-extract-plugin": "^1.3.1",
+        "nodemon": "^2.0.6",
+        "prettier": "^2.2.0",
+        "style-loader": "^2.0.0",
+        "stylelint": "^13.8.0",
+        "webpack": "^5.10.1",
+        "webpack-cli": "^4.2.0",
+        "webpack-dev-server": "^3.11.0",
+        "webpack-merge": "^5.7.0",
+        "webpackbar": "^5.0.0-3"
+    },
+    "eslintConfig": {
+        "extends": "@nice-move/eslint-config-base",
+        "rules": {
+            "import/no-extraneous-dependencies": [
+                "error",
+                {
+                    "devDependencies": [
+                        "webpack.*.js"
+                    ]
+                }
+            ]
+        }
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "nice-move lint"
+        }
+    },
+    "nodemonConfig": {
+        "delay": "5",
+        "env": {
+            "NODE_ENV": "development"
+        },
+        "watch": [
+            "webpack.common.js",
+            "webpack.dev.js"
+        ]
+    },
+    "prettier": "@nice-move/prettier-config",
+    "stylelint": {
+        "extends": "@nice-move/stylelint-config"
+    }
 }
